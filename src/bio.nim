@@ -16,10 +16,10 @@ proc fromByteSeq*(arr: openArray[byte]): string {.inline.} =
 template castNumber(result, number: typed, endians: Endianness): untyped =
   ## Casts ``number`` to array[byte] in ``endians`` order.
   if endians == cpuEndian:
-    cast[type(result)](number)
+    cast[typeof(result)](number)
   else:
     let 
-      reversedArray = cast[type(result)](number)
+      reversedArray = cast[typeof(result)](number)
       size = reversedArray.high
 
     for idx in 0 .. size:
